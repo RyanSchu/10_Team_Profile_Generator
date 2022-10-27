@@ -3,17 +3,8 @@ const fs = require('fs')
 
 // DEFINE CLASSES
 
-class Member {
-    constructor(){
 
-    }
-}
 
-class Manager extends Member {
-    constructor(){
-
-    }
-}
 
 class Engineer extends Member {
     constructor(){
