@@ -30,8 +30,20 @@ const managerQuestions = [
     }
 ]
 
-const engineerQuestions = []
-const internQuestions = []
+const engineerQuestions = [
+    {
+        type: 'input',
+        message: 'Please enter their github:',
+        name: 'github'
+    }
+]
+const internQuestions = [
+    {
+        type: 'input',
+        message: 'Please enter their school:',
+        name: 'school'
+    }
+]
 
 const followupQuestion = [
     {
@@ -42,22 +54,26 @@ const followupQuestion = [
 ]
 
 const inputManager = async () => {
-    manager = await inquirer.prompt([...generalQuestions,...managerQuestions])
+    const manager = await inquirer.prompt([...generalQuestions,...managerQuestions])
     team.push(new Manager(name=manager.name,id=manager.id,email=manager.email,officeNumber=manager.number))
-    console.log(team)
     askFollowup()
 }
 
-const inputEngineer = () => {
-    console.log("engineer")
+const inputEngineer = async () => {
+    const engineer = await inquirer.prompt([...generalQuestions,...engineerQuestions])
+    team.push(new Engineer(name=engineer.name,id=engineer.id,email=engineer.email,github=engineer.github))
+    askFollowup()
 }
 
-const inputIntern = () => {
-    console.log("intern")
+const inputIntern = async () => {
+    const intern = await inquirer.prompt([...generalQuestions,...internQuestions])
+    team.push(new Intern(name=intern.name,id=intern.id,email=intern.email,school=intern.school))
+    askFollowup()
 }
 
 
 const generateHTML = () => {
+    console.log(team)
     console.log("finished")
 }
 
