@@ -30,16 +30,55 @@ const managerQuestions = [
     }
 ]
 
+const engineerQuestions = []
+const internQuestions = []
+
+const followupQuestion = [
+    {
+        type: 'list',
+        choices: ['Engineer','Intern','Finish building team'],
+        name: 'choice'
+    }
+]
+
 const inputManager = async () => {
     manager = await inquirer.prompt([...generalQuestions,...managerQuestions])
     team.push(new Manager(name=manager.name,id=manager.id,email=manager.email,officeNumber=manager.number))
     console.log(team)
+    askFollowup()
 }
 
+const inputEngineer = () => {
+    console.log("engineer")
+}
+
+const inputIntern = () => {
+    console.log("intern")
+}
+
+
+const generateHTML = () => {
+    console.log("finished")
+}
+
+const askFollowup= async() => {
+    choice = await inquirer.prompt(followupQuestion)
+    switch (choice.choice) {
+        case "Engineer":
+            inputEngineer()
+            break;
+        case "Intern":
+            inputIntern()
+            break;
+        case "Finish building team":
+            generateHTML();
+    }
+}
 
 
 console.log(team)
 inputManager()
+
 
 
 
