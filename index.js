@@ -1,4 +1,4 @@
-const inquirer = require('inquirer');
+import inquirer from './node_modules/inquirer'
 const fs = require('fs')
 
 // DEFINE CLASSES
