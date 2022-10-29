@@ -71,12 +71,6 @@ const inputIntern = async () => {
     askFollowup()
 }
 
-
-const generateHTML = () => {
-    console.log(team)
-    console.log("finished")
-}
-
 const askFollowup= async() => {
     choice = await inquirer.prompt(followupQuestion)
     switch (choice.choice) {
@@ -91,6 +85,11 @@ const askFollowup= async() => {
     }
 }
 
+
+const generateHTML = () => {
+    console.log(team)
+    console.log("finished")
+}
 
 console.log(team)
 inputManager()
