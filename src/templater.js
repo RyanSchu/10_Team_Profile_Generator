@@ -1,3 +1,5 @@
+const fs = require('fs')
+
 let head = 
 `<!DOCTYPE html>
 <html lang="en">
@@ -18,14 +20,35 @@ let head =
     
     <div class="container-fluid py-5 d-flex justify-content-center">`
 
-
+const tail = 
+`    </div>
+</body>
+</html>`
 
 const generateHTML = (team) => {
-    team.map(employee => generateCard(employee))
+    const cardList=team.map(employee => generateCard(employee))
+    const output = head + cardList.join('') + tail
+    fs.writeFile('./dist/index.html',output,(err) => {
+        if (err) throw err;
+        console.log('The file has been saved!');
+      })
 } 
 
 const generateCard = (employee) => {
-    console.log(employee.getRole())
+    const last_item=employee[Object.keys(employee)[Object.keys(employee).length - 1]]
+    const card =
+    `        <div class="card" style="width: 18rem;">
+    <div class="card-body">
+        <h5 class="card-title">${employee.name}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">${employee.getRole()}</h6>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">${employee.id}</li>
+            <li class="list-group-item">${employee.email}</li>
+            <li class="list-group-item">${last_item}</li>
+          </ul>
+    </div>
+</div>`
+    return card
 }
 
 module.exports  = {generateHTML, generateCard}
