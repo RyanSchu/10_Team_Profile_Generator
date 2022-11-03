@@ -1,5 +1,6 @@
 const inquirer = require ('inquirer');
 const fs = require ('fs')
+const {generateHTML} = require('./src/templater')
 const Manager = require('./lib/Manager');
 const Engineer = require ('./lib/Engineer');
 const Intern = require ('./lib/Intern')
@@ -81,17 +82,11 @@ const askFollowup= async() => {
             inputIntern()
             break;
         case "Finish building team":
-            generateHTML();
+            generateHTML(team);
     }
 }
 
 
-const generateHTML = () => {
-    console.log(team)
-    console.log("finished")
-}
-
-console.log(team)
 inputManager()
 
 
